@@ -13,7 +13,7 @@ func f1() {
 	var err error
 	fileObj, err = os.Open("./main.go")
 	if err != nil {
-		fmt.Println("open file failed, err: ", err)
+		fmt.Println("open file failed, err:", err)
 		return
 	}
 	defer func() { _ = fileObj.Close() }()
@@ -24,20 +24,20 @@ func f2() {
 	// 打开要操作的文件
 	fileObj, err := os.OpenFile("./sb.txt", os.O_RDWR, 0644)
 	if err != nil {
-		fmt.Println("open file failed, err: ", err)
+		fmt.Println("open file failed, err:", err)
 		return
 	}
 	// 因为没有办法直接在文件中间插入内容，所以要借助一个临时文件
 	tmpFile, err := os.Create("./sb.tmp")
 	if err != nil {
-		fmt.Println("create temp file failed, err: ", err)
+		fmt.Println("create temp file failed, err:", err)
 		return
 	}
 	// 读取源文件写入临时文件
 	var ret [1]byte
 	n, err := fileObj.Read(ret[:])
 	if err != nil {
-		fmt.Println("read from file failed, err: ", err)
+		fmt.Println("read from file failed, err:", err)
 		return
 	}
 	// 写入临时文件
@@ -55,7 +55,7 @@ func f2() {
 			break
 		}
 		if err != nil {
-			fmt.Println("read file failed, err: ", err)
+			fmt.Println("read file failed, err:", err)
 			return
 		}
 		_, _ = tmpFile.Write(x[:n])
