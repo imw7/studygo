@@ -1,3 +1,3 @@
-module pointer_demo
+module pointer
 
 go 1.16
