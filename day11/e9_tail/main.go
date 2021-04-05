@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// tailf的用法示例
+// tailf包的用法示例
 
 func main() {
 	fileName := "./my.log"
