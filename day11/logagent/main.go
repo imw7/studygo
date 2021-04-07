@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/imw7/studygo/day11/logagent/conf"
-	"github.com/imw7/studygo/day11/logagent/kafka"
-	"github.com/imw7/studygo/day11/logagent/taillog"
 	"gopkg.in/ini.v1"
+	"logagent/conf"
+	"logagent/kafka"
+	"logagent/taillog"
 	"time"
 )
 
