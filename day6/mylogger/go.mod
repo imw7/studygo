@@ -1,3 +1,3 @@
-module github.com/hugew/go-code/day6/mylogger
+module mylogger
 
 go 1.16
