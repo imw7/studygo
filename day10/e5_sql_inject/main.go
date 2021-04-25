@@ -15,11 +15,11 @@ func initDB() (err error) {
 	// DSN:Data Source Name
 	// dsn := "用户名:密码@tcp(ip:端口)/数据库的名字"
 	// 数据库信息
-	dsn := "root:password@tcp(127.0.0.1:3306)/test"
+	dsn := "root:password@tcp(127.0.0.1:3306)/sql_test"
 	// 也可以使用MustConnect连接不成功就panic
 	db, err = sqlx.Connect("mysql", dsn)
 	if err != nil {
-		fmt.Println("connect DB failed, err:", err)
+		fmt.Println("connect database failed, err:", err)
 		return
 	}
 	db.SetMaxOpenConns(20) // 设置数据库连接池的最大连接数
@@ -52,10 +52,10 @@ func sqlInject(name string) {
 func main() {
 	err := initDB()
 	if err != nil {
-		fmt.Println("init DB failed, err:", err)
+		fmt.Println("init database failed, err:", err)
 		return
 	}
-	fmt.Println("连接数据库成功")
+	fmt.Println("connect database succeed!")
 
 	// sql注入的几种示例
 	sqlInject("Eric")
