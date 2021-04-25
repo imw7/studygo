@@ -196,9 +196,9 @@ func main() {
 
 	queryRow(2)
 	queryMultiRow(0)
+	deleteRow(5)
 	insertRow(5, "Judy", 33)
 	updateRow(32, 5)
-	deleteRow(5)
 	prepareQuery(2)
 	prepareInsert()
 }
