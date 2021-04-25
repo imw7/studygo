@@ -16,7 +16,7 @@ func f1() {
 	}
 	funcName := runtime.FuncForPC(pc).Name()
 	fmt.Println(funcName)
-	fmt.Println(file) // /home/charlie/Go/src/github.com/charliewell/go-code/day6/l6_runtime/main.go
+	fmt.Println(file) // /home/imw7/Go/src/github.com/imw7/studygo/day6/e6_runtime/main.go
 	fmt.Println(path.Base(file))
 	fmt.Println(line) // 11
 }
