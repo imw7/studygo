@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// runtime_pprof
+// runtime_pprof https://imw7.github.io/p/performance_optimisation.html
 
 // 一段有问题的代码
 func logicCode() {
