@@ -11,7 +11,7 @@ import (
 // 打开文件写内容
 
 func writeFile(name string) {
-	file, err := os.OpenFile(name, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 777)
+	file, err := os.OpenFile(name, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0777)
 	if err != nil {
 		fmt.Println("open file failed, err:", err)
 		return
@@ -36,7 +36,7 @@ func writeFile(name string) {
 }
 
 func writeWithBufio(name string) {
-	file, err := os.OpenFile(name, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 777)
+	file, err := os.OpenFile(name, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0777)
 	if err != nil {
 		fmt.Println("open file failed, err:", err)
 		return
