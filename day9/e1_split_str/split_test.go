@@ -6,20 +6,21 @@ import (
 )
 
 // func TestSplit(t *testing.T) {
-// 	type testCase struct {
+// 	// 定义一个测试用例类型
+// 	type test struct {
 // 		got      string
 // 		sep      string
 // 		excepted []string
 // 	}
-//
-// 	testGroup := []testCase{
-// 		{"a:b:c", ":", []string{"a", "b", "c"}},
-// 		{"abcbebdbf", "b", []string{"a", "c", "e", "d", "f"}},
-// 		{"about", "bo", []string{"a", "ut"}},
-// 		{"上海自来水来自海上", "自", []string{"上海", "来水来", "海上"}},
+// 	// 定义一个存储测试用例的切片
+// 	tests := []test{
+// 		{got: "a:b:c", sep: ":", excepted: []string{"a", "b", "c"}},
+// 		{got: "a:b:c", sep: ",", excepted: []string{"a:b:c"}},
+// 		{got: "about", sep: "bo", excepted: []string{"a", "ut"}},
+// 		{got: "上海水海上来", sep: "上", excepted: []string{"海水海", "来"}},
 // 	}
-//
-// 	for _, tc := range testGroup {
+// 	// 遍历切片，逐一执行测试用例
+// 	for _, tc := range tests {
 // 		got := Split(tc.got, tc.sep)
 // 		if !reflect.DeepEqual(got, tc.excepted) {
 // 			t.Fatalf("excepted:%v, got:%v\n", tc.excepted, got)
@@ -29,40 +30,24 @@ import (
 
 // 子测试
 func TestSplit(t *testing.T) {
-	type testCase struct {
+	type test struct { // 定义test结构体
 		got      string
 		sep      string
 		excepted []string
 	}
 
-	testGroup := map[string]testCase{
-		"first": {
-			got:      "a:b:c",
-			sep:      ":",
-			excepted: []string{"a", "b", "c"},
-		},
-		"second": {
-			got:      "abcbebdbf",
-			sep:      "b",
-			excepted: []string{"a", "c", "e", "d", "f"},
-		},
-		"third": {
-			got:      "about",
-			sep:      "bo",
-			excepted: []string{"a", "ut"},
-		},
-		"fourth": {
-			got:      "上海自来水来自海上",
-			sep:      "自",
-			excepted: []string{"上海", "来水来", "海上"},
-		},
+	tests := map[string]test{ // 测试用例使用map存储
+		"simple":      {got: "a:b:c", sep: ":", excepted: []string{"a", "b", "c"}},
+		"wrong sep":   {got: "a:b:c", sep: ",", excepted: []string{"a:b:c"}},
+		"more sep":    {got: "about", sep: "bo", excepted: []string{"a", "ut"}},
+		"leading sep": {got: "上海水海上来", sep: "上", excepted: []string{"", "海水海", "来"}},
 	}
 
-	for name, tc := range testGroup {
-		t.Run(name, func(t *testing.T) {
+	for name, tc := range tests {
+		t.Run(name, func(t *testing.T) { // 使用t.Run()执行子测试
 			got := Split(tc.got, tc.sep)
 			if !reflect.DeepEqual(got, tc.excepted) {
-				t.Fatalf("excepted:%v, got:%v\n", tc.excepted, got)
+				t.Errorf("name:%s excepted:%#v, got:%#v", name, tc.excepted, got) // 将测试用例的name格式化输出
 			}
 		})
 	}
