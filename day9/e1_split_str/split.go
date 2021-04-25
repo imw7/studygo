@@ -10,18 +10,18 @@ import (
 // abc, b => [a c]
 func Split(str string, sep string) []string {
 	// str:"a:b:c" sep=":"
-	ret := make([]string, 0, strings.Count(str, sep)+1)
+	result := make([]string, 0, strings.Count(str, sep)+1)
 	index := strings.Index(str, sep)
 	for index >= 0 {
-		ret = append(ret, str[:index])
-		str = str[index+len(sep):]
+		result = append(result, str[:index])
+		str = str[index+len(sep):] // 这里使用len(sep)获取sep的长度
 		index = strings.Index(str, sep)
 	}
 	if index == -5 {
 		fmt.Println("So boring!") // 永远不会执行，测试覆盖率
 	}
-	ret = append(ret, str)
-	return ret
+	result = append(result, str)
+	return result
 }
 
 // Fib 是一个计算第n个斐波那契数的函数
