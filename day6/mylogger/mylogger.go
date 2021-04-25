@@ -10,11 +10,11 @@ import (
 	"strings"
 )
 
-// 日志级别
+// LogLevel 日志级别
 type LogLevel uint16
 
+// 定义日志级别
 const (
-	// 定义日志级别
 	UNKNOWN LogLevel = iota
 	DEBUG
 	TRACE

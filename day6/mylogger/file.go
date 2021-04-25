@@ -156,7 +156,7 @@ func (f *FileLogger) Fatal(format string, a ...interface{}) {
 	f.log(FATAL, format, a...)
 }
 
-// 关闭文件
+// Close 关闭文件
 func (f *FileLogger) Close() {
 	_ = f.fileObj.Close()
 	_ = f.errFileObj.Close()
