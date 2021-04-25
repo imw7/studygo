@@ -9,8 +9,8 @@ import (
 
 func main() {
 	// \ 本来是具有特殊含义的，我应该告诉程序我写的\就是一个单纯的\
-	path := "\"E:\\Go\\src\\github.com\\xuelang201201\\day01\""
-	fmt.Println(path) // "E:\Go\src\github.com\xuelang201201\day01"
+	path := "\"E:\\Go\\src\\github.com\\imw7\\day01\""
+	fmt.Println(path) // "E:\Go\src\github.com\imw7\day01"
 
 	s := "I'm OK!"
 	fmt.Println(s) // I'm OK!
@@ -23,8 +23,8 @@ func main() {
 	`
 	fmt.Println(s2) // 原样输出
 
-	s3 := `E:\Go\src\github.com\xuelang201201\day01`
-	fmt.Println(s3) // E:\Go\src\github.com\xuelang201201\day01
+	s3 := `E:\Go\src\github.com\imw7\day01`
+	fmt.Println(s3) // E:\Go\src\github.com\imw7\day01
 
 	// 字符串相关操作
 	fmt.Println(len(s3)) // 40
@@ -42,7 +42,7 @@ func main() {
 
 	// 分割
 	ret := strings.Split(s3, "\\")
-	fmt.Println(ret) // [E: Go src github.com xuelang201201 day01]
+	fmt.Println(ret) // [E: Go src github.com imw7 day01]
 
 	// 包含
 	fmt.Println(strings.Contains(ss, "小花")) // false
@@ -60,7 +60,7 @@ func main() {
 	fmt.Println(strings.LastIndex(s4, "b")) // 5
 
 	// 拼接
-	fmt.Println(strings.Join(ret, "+")) // E:+Go+src+github.com+xuelang201201+day01
+	fmt.Println(strings.Join(ret, "+")) // E:+Go+src+github.com+imw7+day01
 
 	s5 := "eric"
 	fmt.Println(strings.Title(s5)) // Eric
