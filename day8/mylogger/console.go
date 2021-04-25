@@ -12,7 +12,7 @@ type ConsoleLogger struct {
 	Level LogLevel
 }
 
-// NewLog 构造函数
+// NewConsoleLog 构造函数
 func NewConsoleLog(levelStr string) ConsoleLogger {
 	level, err := parseLogLevel(levelStr)
 	if err != nil {
@@ -43,17 +43,17 @@ func (c ConsoleLogger) Debug(format string, a ...interface{}) {
 }
 
 func (c ConsoleLogger) Info(format string, a ...interface{}) {
-	c.log(DEBUG, format, a...)
+	c.log(INFO, format, a...)
 }
 
 func (c ConsoleLogger) Warning(format string, a ...interface{}) {
-	c.log(DEBUG, format, a...)
+	c.log(WARNING, format, a...)
 }
 
 func (c ConsoleLogger) Error(format string, a ...interface{}) {
-	c.log(DEBUG, format, a...)
+	c.log(ERROR, format, a...)
 }
 
 func (c ConsoleLogger) Fatal(format string, a ...interface{}) {
-	c.log(DEBUG, format, a...)
+	c.log(FATAL, format, a...)
 }
