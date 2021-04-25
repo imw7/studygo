@@ -26,8 +26,6 @@ func main() {
 		fmt.Printf("open %s failed, err:%v\n", dsn, err)
 		return
 	}
-	defer func() {
-		_ = db.Close() // 注意这行代码要写在上面err判断的下面
-	}()
-	fmt.Println("connect database success!")
+	defer func() { _ = db.Close() }() // 注意这行代码要写在上面err判断的下面
+	fmt.Println("connect database succeed!")
 }
