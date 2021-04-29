@@ -32,8 +32,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// 5秒钟之后，/eric/ 这个key就会被移除
-	_, err = cli.Put(context.TODO(), "/eric/", "male", clientv3.WithLease(resp.ID))
+	// 5秒钟之后，/imw7/ 这个key就会被移除
+	_, err = cli.Put(context.TODO(), "/imw7/", "male", clientv3.WithLease(resp.ID))
 	if err != nil {
 		log.Fatal(err)
 	}
