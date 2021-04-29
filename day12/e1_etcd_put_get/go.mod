@@ -1,4 +1,4 @@
-module etcd_demo
+module put_get
 
 replace (
 	github.com/coreos/bbolt v1.3.4 => go.etcd.io/bbolt v1.3.4

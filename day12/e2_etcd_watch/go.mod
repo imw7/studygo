@@ -1,4 +1,4 @@
-module watch_demo
+module watch
 
 replace (
 	github.com/coreos/bbolt v1.3.4 => go.etcd.io/bbolt v1.3.4
