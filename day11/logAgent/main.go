@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"gopkg.in/ini.v1"
-	"logagent/conf"
-	"logagent/kafka"
-	"logagent/taillog"
+	"logAgent/conf"
+	"logAgent/kafka"
+	"logAgent/taillog"
 	"time"
 )
 
@@ -44,14 +44,14 @@ func main() {
 		fmt.Println("init Kafka failed, err:", err)
 		return
 	}
-	fmt.Println("init kafka success.")
+	fmt.Println("init kafka succeed.")
 
 	// 2.打开日志文件准备收集日志
-	err = taillog.Init(cfg.TaillogConf.FileName)
+	err = taillog.Init(cfg.TaillogConf.Filename)
 	if err != nil {
 		fmt.Println("init taillog failed, err:", err)
 		return
 	}
-	fmt.Println("init taillog success.")
+	fmt.Println("init taillog succeed.")
 	run()
 }

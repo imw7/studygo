@@ -11,5 +11,5 @@ type KafkaConf struct {
 }
 
 type TaillogConf struct {
-	FileName string `ini:"filename"`
+	Filename string `ini:"filename"`
 }

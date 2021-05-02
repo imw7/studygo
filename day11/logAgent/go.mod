@@ -1,4 +1,4 @@
-module logagent
+module logAgent
 
 go 1.16
 

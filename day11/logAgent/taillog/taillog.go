@@ -9,7 +9,7 @@ import (
 
 var tailObj *tail.Tail
 
-func Init(fileName string) (err error) {
+func Init(filename string) (err error) {
 	config := tail.Config{
 		Location:  &tail.SeekInfo{Offset: 0, Whence: 2}, // 从文件的哪个位置开始读
 		ReOpen:    true,                                 // 重新打开
@@ -17,7 +17,7 @@ func Init(fileName string) (err error) {
 		Follow:    true,                                 // 是否跟随
 		Poll:      true,
 	}
-	tailObj, err = tail.TailFile(fileName, config)
+	tailObj, err = tail.TailFile(filename, config)
 	if err != nil {
 		fmt.Println("tail file failed, err:", err)
 		return
