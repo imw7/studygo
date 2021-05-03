@@ -7,6 +7,7 @@ import (
 	"LogAgent/taillog"
 	"fmt"
 	"gopkg.in/ini.v1"
+	"sync"
 	"time"
 )
 
@@ -40,16 +41,24 @@ func main() {
 
 	// 2.1 从etcd中获取日志收集项目的配置信息
 	logEntries, err := etcd.GetConf(cfg.EtcdConf.Key)
-	// 2.2 派一个哨兵去监视日志收集项的变化（有变化及时通知我的LogAgent实现热加载配置）
 	if err != nil {
 		fmt.Println("etcd.GetConf failed, err:", err)
 		return
 	}
 	fmt.Printf("get conf from etcd succeed, %v.\n", logEntries)
+	// 2.2 派一个哨兵去监视日志收集项的变化（有变化及时通知我的LogAgent实现热加载配置）
+
 	for index, value := range logEntries {
 		fmt.Printf("index:%v value:%v\n", index, value)
 	}
 
 	// 3.收集日志发往Kafka
 	taillog.Init(logEntries)
+	// 因为NewConfChan访问了tskMgr的newConfChan，这个channel是在taillog.Init(logEntries)执行的初始化
+	newConfChan := taillog.NewConfChan() // 从taillog包中获取对外暴露的通道
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go etcd.WatchConf(cfg.EtcdConf.Key, newConfChan) // 哨兵发现最新的配置信息会通知上面的newConfChan通道
+	wg.Wait()
 }
