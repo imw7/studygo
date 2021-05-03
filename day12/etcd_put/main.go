@@ -27,7 +27,7 @@ func main() {
 	// put
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	// value := `[{"path":"/home/tmp/nginx.log","topic":"web_log"},{"path":"/usr/xxx/redis.log","topic":"redis_log"}]`
-	value := `[{"path":"/home/tmp/nginx.log","topic":"web_log"},{"path":"/usr/xxx/nginx.log","topic":"redis_log"},{"path":"/usr/xxx/mysql.log","topic":"mysql_log"}]`
+	value := `[{"path":"/home/tmp/nginx.log","topic":"web_log"},{"path":"/usr/xxx/redis.log","topic":"redis_log"},{"path":"/usr/xxx/mysql.log","topic":"mysql_log"}]`
 	_, err = cli.Put(ctx, "/LogAgent/192.168.1.3/collect_config", value)
 	cancel()
 	if err != nil {
