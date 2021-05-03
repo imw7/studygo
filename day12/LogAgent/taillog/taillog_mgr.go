@@ -49,7 +49,21 @@ func (t *tailLogMgr) run() {
 					t.tskMap[pt] = tails
 				}
 			}
-			// TODO 找出原来t.logEntry有，但是newConf中没有的，要删掉
+			// 找出原来t.logEntry有，但是newConf中没有的，要删掉
+			for _, c1 := range t.logEntry { // 从原来的配置中依次拿出配置项
+				isDelete := true
+				for _, c2 := range newConf { // 去新的配置中逐一进行比较
+					if c2.Path == c1.Path && c2.Topic == c1.Topic {
+						isDelete = false
+						continue
+					}
+				}
+				if isDelete {
+					// 把c1对应的这个tails给停掉
+					pt := fmt.Sprintf("%s_%s", c1.Path, c1.Topic)
+					t.tskMap[pt].cancelFunc()
+				}
+			}
 
 			// 配置删除
 			fmt.Println("new config is here~", newConf)
