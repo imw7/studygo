@@ -7,7 +7,7 @@ import (
 
 // 专门从日志文件收集日志的模块
 
-var tailObj *tail.Tail
+var tails *tail.Tail
 
 func Init(filename string) (err error) {
 	config := tail.Config{
@@ -17,7 +17,7 @@ func Init(filename string) (err error) {
 		Follow:    true,                                 // 是否跟随
 		Poll:      true,
 	}
-	tailObj, err = tail.TailFile(filename, config)
+	tails, err = tail.TailFile(filename, config)
 	if err != nil {
 		fmt.Println("tail file failed, err:", err)
 		return
@@ -26,5 +26,5 @@ func Init(filename string) (err error) {
 }
 
 func ReadChan() <-chan *tail.Line {
-	return tailObj.Lines
+	return tails.Lines
 }

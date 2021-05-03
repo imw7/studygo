@@ -28,10 +28,6 @@ func run() {
 
 func main() {
 	// 0.加载配置文件
-	// cfg, err := ini.Load("./conf/config.ini")
-	// fmt.Println(cfg.Section("kafka").Key("address"))
-	// fmt.Println(cfg.Section("kafka").Key("topic"))
-	// fmt.Println(cfg.Section("taillog").Key("filename"))
 	err := ini.MapTo(cfg, "./conf/config.ini")
 	if err != nil {
 		fmt.Println("load ini failed, err:", err)
@@ -53,5 +49,7 @@ func main() {
 		return
 	}
 	fmt.Println("init taillog succeed.")
+
+	// 3.具体业务操作
 	run()
 }
