@@ -26,7 +26,7 @@ func main() {
 	}()
 	// put
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	value := `[{"path":"/home/tmp/nginx.log","topic":"web_log"},{"path":"/usr/xxx/nginx.log","topic":"redis_log"}]`
+	value := `[{"path":"/home/tmp/nginx.log","topic":"web_log"},{"path":"/usr/xxx/redis.log","topic":"redis_log"}]`
 	_, err = cli.Put(ctx, "/xxx", value)
 	cancel()
 	if err != nil {
