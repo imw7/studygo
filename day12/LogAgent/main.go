@@ -5,6 +5,7 @@ import (
 	"LogAgent/etcd"
 	"LogAgent/kafka"
 	"LogAgent/taillog"
+	"LogAgent/utils"
 	"fmt"
 	"gopkg.in/ini.v1"
 	"sync"
@@ -39,8 +40,15 @@ func main() {
 	}
 	fmt.Println("init etcd succeed.")
 
+	// 为了实现每个LogAgent都拉取自己独有的配置，所以要以自己的IP地址作为区分
+	ipStr, err := utils.GetOutboundIP()
+	if err != nil {
+		fmt.Println("get outbound ip failed, err:", err)
+		return
+	}
+	etcdConfKey := fmt.Sprintf(cfg.EtcdConf.Key, ipStr)
 	// 2.1 从etcd中获取日志收集项目的配置信息
-	logEntries, err := etcd.GetConf(cfg.EtcdConf.Key)
+	logEntries, err := etcd.GetConf(etcdConfKey)
 	if err != nil {
 		fmt.Println("etcd.GetConf failed, err:", err)
 		return
