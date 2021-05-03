@@ -53,7 +53,5 @@ func main() {
 		return
 	}
 	fmt.Println("init taillog succeed.")
-
-	// 3.具体业务操作
 	run()
 }
