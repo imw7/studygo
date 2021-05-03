@@ -51,7 +51,7 @@ func main() {
 	fmt.Println("init etcd succeed.")
 
 	// 2.1 从etcd中获取日志收集项目的配置信息
-	entries, err := etcd.GetConf("/xxx")
+	entries, err := etcd.GetConf(cfg.EtcdConf.Key)
 	// 2.2 派一个哨兵去监视日志收集项的变化（有变化及时通知我的LogAgent实现热加载配置）
 	if err != nil {
 		fmt.Println("etcd.GetConf failed, err:", err)
