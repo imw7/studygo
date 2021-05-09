@@ -20,7 +20,6 @@ func main() {
 		// Handle error
 		panic(err)
 	}
-
 	fmt.Println("connect to es succeed.")
 	p1 := Person{Name: "eric", Age: "22", Married: false}
 	put1, err := client.Index().
