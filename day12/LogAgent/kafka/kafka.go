@@ -58,12 +58,13 @@ func sendToKafka() {
 			msg.Topic = ld.topic
 			msg.Value = sarama.StringEncoder(ld.data)
 			// 发送到Kafka
-			pid, offset, err := producer.SendMessage(msg)
+			// pid, offset, err := producer.SendMessage(msg)
+			_, _, err := producer.SendMessage(msg)
 			if err != nil {
 				fmt.Println("send message failed, err:", err)
 				return
 			}
-			fmt.Printf("pid:%v offset:%v\n", pid, offset)
+			// fmt.Printf("pid:%v offset:%v\n", pid, offset)
 		default:
 			time.Sleep(time.Millisecond * 50)
 		}

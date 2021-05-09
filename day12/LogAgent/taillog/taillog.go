@@ -64,6 +64,7 @@ func (t *TailTask) run() {
 			// kafka.SendToKafka(t.topic, line.Text) // 函数调用函数
 
 			// 先把日志数据发送到一个通道中
+			fmt.Printf("get log from %s succeed, data: %v\n", t.path, line.Text)
 			kafka.SendToChan(t.topic, line.Text)
 			// kafka那个包中有单独的goroutine去取日志数据发送到kafka
 		}
