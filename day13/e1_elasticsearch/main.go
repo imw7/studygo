@@ -22,12 +22,11 @@ func main() {
 	}
 
 	fmt.Println("connect to es succeed.")
-	p1 := Person{
-		Name:    "eric",
-		Age:     "22",
-		Married: false,
-	}
-	put1, err := client.Index().Index("user").BodyJson(p1).Do(context.Background())
+	p1 := Person{Name: "eric", Age: "22", Married: false}
+	put1, err := client.Index().
+		Index("user").
+		BodyJson(p1).
+		Do(context.Background())
 	if err != nil {
 		// Handle error
 		panic(err)
