@@ -1,4 +1,4 @@
-module gin_templates
+module html_render
 
 go 1.16
 

@@ -5,6 +5,8 @@ import (
 	"net/http"
 )
 
+// HTML渲染
+
 func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/**/*")
@@ -14,7 +16,6 @@ func main() {
 			"title": "posts/index",
 		})
 	})
-
 	r.GET("users/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "users/index.html", gin.H{
 			"title": "users/index",
