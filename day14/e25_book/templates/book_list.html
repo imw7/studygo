@@ -6,7 +6,7 @@
     <title>书籍列表</title>
 </head>
 <body>
-<div><a href="/book/new">添加新书</a></div>
+<div><a href="http://127.0.0.1:8080/book/new">添加新书</a></div>
 <table border="1">
     <thead>
     <tr>
@@ -22,7 +22,7 @@
         <td>{{.ID}}</td>
         <td>{{.Title}}</td>
         <td>{{.Price}}</td>
-        <td><a href="/book/delete?id={{.ID}}">删除</a></td>
+        <td><a href="http://127.0.0.1:8080/book/delete?id={{.ID}}">删除</a></td>
     </tr>
     {{end}}
     </tbody>
