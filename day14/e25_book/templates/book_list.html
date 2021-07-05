@@ -7,26 +7,42 @@
 </head>
 <body>
 <div><a href="http://127.0.0.1:8080/book/new">添加新书</a></div>
-<table border="1">
-    <thead>
-    <tr>
-        <th>编号</th>
-        <th>书名</th>
-        <th>价格</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{range .data}}
-    <tr>
-        <td>{{.ID}}</td>
-        <td>{{.Title}}</td>
-        <td>{{.Price}}</td>
-        <td><a href="http://127.0.0.1:8080/book/delete?id={{.ID}}">删除</a></td>
-    </tr>
-    {{end}}
-    </tbody>
-</table>
+<style>
+    .css table, table tr th, table tr td {
+        border: 1px solid;
+    }
+
+    .css table {
+        width: 300px;
+        min-height: 25px;
+        line-height: 25px;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 2px;
+    }
+</style>
+<div class="css">
+    <table>
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>书名</th>
+            <th>价格</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .data}}
+        <tr>
+            <td>{{.ID}}</td>
+            <td>{{.Title}}</td>
+            <td>{{.Price}}</td>
+            <td><a href="http://127.0.0.1:8080/book/delete?id={{.ID}}">删除</a></td>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
 {{end}}
