@@ -66,9 +66,10 @@ func main() {
 				"msg":  err,
 			})
 		}
-		c.JSON(http.StatusOK, gin.H{
-			"message": "delete book succeed",
-		})
+		// c.JSON(http.StatusOK, gin.H{
+		// 	"message": "delete book succeed",
+		// })
+		c.Redirect(http.StatusMovedPermanently, "/book/list")
 	})
 	_ = r.Run(":8080")
 }
