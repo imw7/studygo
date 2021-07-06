@@ -6,22 +6,23 @@
     <title>书籍列表</title>
 </head>
 <body>
-<div><a href="http://127.0.0.1:8080/book/new">添加新书</a></div>
+<div style="padding-bottom: 5px">
+    <a href="/book/new"><input type="button" value="添加新书"/></a>
+</div>
 <style>
-    .css table, table tr th, table tr td {
+    .tb_css table, table tr th, table tr td {
         border: 1px solid;
     }
 
-    .css table {
-        width: 300px;
+    .tb_css table {
+        width: 350px;
         min-height: 25px;
         line-height: 25px;
         border-collapse: collapse;
         text-align: center;
-        padding: 2px;
     }
 </style>
-<div class="css">
+<div class="tb_css">
     <table>
         <thead>
         <tr>
@@ -37,7 +38,11 @@
             <td>{{.ID}}</td>
             <td>{{.Title}}</td>
             <td>{{.Price}}</td>
-            <td><a href="http://127.0.0.1:8080/book/delete?id={{.ID}}">删除</a></td>
+            <td>
+                <a href="/book/delete?id={{.ID}}">
+                    <input type="button" style="margin-bottom: 2px" value="删除"/>
+                </a>
+            </td>
         </tr>
         {{end}}
         </tbody>
