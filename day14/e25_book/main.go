@@ -49,6 +49,7 @@ func main() {
 				"code": 1,
 				"msg":  err,
 			})
+			return
 		}
 		// c.JSON(http.StatusOK, gin.H{
 		// 	 "message": "insert book succeed",
@@ -65,6 +66,7 @@ func main() {
 				"code": 1,
 				"msg":  err,
 			})
+			return
 		}
 		// c.JSON(http.StatusOK, gin.H{
 		// 	"message": "delete book succeed",
