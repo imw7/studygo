@@ -19,5 +19,7 @@ func main() {
 	router.LoadHTMLGlob("views/*")
 	router.GET("/", controller.IndexHandler)
 	router.GET("/category/", controller.CategoryListHandler)
+	router.GET("/article/new/", controller.NewArticleHandler)
+	router.POST("/article/submit/", controller.ArticleSubmitHandler)
 	_ = router.Run(":8080")
 }

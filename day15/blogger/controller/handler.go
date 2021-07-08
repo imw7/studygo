@@ -2,6 +2,7 @@ package controller
 
 import (
 	"blogger/service"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -53,4 +54,34 @@ func CategoryListHandler(c *gin.Context) {
 		"article_list":  articleRecordList,
 		"category_list": categoryList,
 	})
+}
+
+// NewArticleHandler 新建文章
+func NewArticleHandler(c *gin.Context) {
+	categoryList, err := service.GetAllCategoryList()
+	if err != nil {
+		fmt.Println("get article failed, err:", err)
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	c.HTML(http.StatusOK, "views/post_article.html", categoryList)
+}
+
+// ArticleSubmitHandler 发表文章
+func ArticleSubmitHandler(c *gin.Context) {
+	content := c.PostForm("content")
+	author := c.PostForm("author")
+	categoryIdStr := c.PostForm("category_id")
+	title := c.PostForm("title")
+	categoryId, err := strconv.ParseInt(categoryIdStr, 10, 64)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	err = service.InsertArticle(content, author, title, categoryId)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	c.Redirect(http.StatusMovedPermanently, "/")
 }
