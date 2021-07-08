@@ -116,6 +116,12 @@ func GetArticleDetail(articleId int64) (articleDetail *model.ArticleDetail, err 
 	return
 }
 
+// GetRelativeArticleList 获取相关文章
+func GetRelativeArticleList(articleId int64) (articleList []*model.RelativeArticle, err error) {
+	articleList, err = db.GetRelativeArticle(articleId)
+	return
+}
+
 // GetPrevAndNextArticleInfo 获取上下篇文章
 func GetPrevAndNextArticleInfo(articleId int64) (prevArticle, nextArticle *model.RelativeArticle, err error) {
 	prevArticle, _ = db.GetPrevArticleById(articleId)
