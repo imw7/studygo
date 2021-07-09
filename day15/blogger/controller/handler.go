@@ -167,3 +167,22 @@ func NewLeaveHandler(c *gin.Context) {
 	}
 	c.HTML(http.StatusOK, "views/gbook.html", leaveList)
 }
+
+// AboutMeHandler 关于我页面
+func AboutMeHandler(c *gin.Context) {
+	content := c.PostForm("content")
+	author := c.PostForm("author")
+	categoryIdStr := c.PostForm("category_id")
+	title := c.PostForm("title")
+	categoryId, err := strconv.ParseInt(categoryIdStr, 10, 64)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	err = service.InsertArticle(content, author, title, categoryId)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	c.Redirect(http.StatusMovedPermanently, "/")
+}
