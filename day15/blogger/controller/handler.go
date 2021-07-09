@@ -85,3 +85,45 @@ func ArticleSubmitHandler(c *gin.Context) {
 	}
 	c.Redirect(http.StatusMovedPermanently, "/")
 }
+
+// ArticleDetailHandler 文章详细页
+func ArticleDetailHandler(c *gin.Context) {
+	articleIdStr := c.Query("article_id")
+	articleId, err := strconv.ParseInt(articleIdStr, 10, 64)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	articleDetail, err := service.GetArticleDetail(articleId)
+	if err != nil {
+		fmt.Printf("get article detail failed, article_id:%d err:%v\n", articleId, err)
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	relativeArticle, err := service.GetRelativeArticleList(articleId)
+	if err != nil {
+		fmt.Println("get relative article failed, err:", err)
+	}
+	prevArticle, nextArticle, err := service.GetPrevAndNextArticleInfo(articleId)
+	if err != nil {
+		fmt.Println("get prev or next article failed, err:\n", err)
+	}
+	allCategoryList, err := service.GetAllCategoryList()
+	if err != nil {
+		fmt.Println("get all categories failed, err:", err)
+	}
+	// 获取评论列表
+	commentList, err := service.GetCommentList(articleId)
+	if err != nil {
+		fmt.Println("get comment list failed, err:", err)
+	}
+	var m = make(map[string]interface{}, 10)
+	m["detail"] = articleDetail
+	m["relative_article"] = relativeArticle
+	m["prev"] = prevArticle
+	m["next"] = nextArticle
+	m["category"] = allCategoryList
+	m["article_id"] = articleId
+	m["comment_list"] = commentList
+	c.HTML(http.StatusOK, "views/detail.html", m)
+}
