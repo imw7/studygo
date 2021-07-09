@@ -187,6 +187,7 @@ func AboutMeHandler(c *gin.Context) {
 	c.Redirect(http.StatusMovedPermanently, "/")
 }
 
+// CommentSubmitHandler 文章评论页面
 func CommentSubmitHandler(c *gin.Context) {
 	comment := c.PostForm("comment")
 	author := c.PostForm("author")
