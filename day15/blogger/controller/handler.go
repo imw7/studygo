@@ -207,3 +207,18 @@ func CommentSubmitHandler(c *gin.Context) {
 	url := fmt.Sprintf("/article/detail/?article_id=%d", articleId)
 	c.Redirect(http.StatusMovedPermanently, url)
 }
+
+// LeaveSubmitHandler 提交留言页面
+func LeaveSubmitHandler(c *gin.Context) {
+	comment := c.PostForm("comment")
+	author := c.PostForm("author")
+	email := c.PostForm("email")
+	err := service.InsertLeave(author, email, comment)
+	if err != nil {
+		fmt.Println("insert leave failed, err:", err)
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	url := fmt.Sprintf("/leave/new/")
+	c.Redirect(http.StatusMovedPermanently, url)
+}

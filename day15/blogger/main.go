@@ -28,5 +28,6 @@ func main() {
 	router.GET("/leave/new/", controller.NewLeaveHandler)
 	router.GET("/about/me/", controller.AboutMeHandler)
 	router.POST("/comment/submit/", controller.CommentSubmitHandler)
+	router.POST("/leave/submit/", controller.LeaveSubmitHandler)
 	_ = router.Run(":8080")
 }
