@@ -47,9 +47,10 @@ func GetArticleDetail(articleId int64) (articleDetail *model.ArticleDetail, err 
 		err = fmt.Errorf("invalid parameter, article_id:%d\n", articleId)
 		return
 	}
+	articleDetail = &model.ArticleDetail{}
 	sqlStr := `select id, summary, title, view_count, content, create_time, 
        comment_count, username, category_id from article where id=? and status=1`
-	err = DB.Get(&articleDetail, sqlStr, articleId)
+	err = DB.Get(articleDetail, sqlStr, articleId)
 	return
 }
 
