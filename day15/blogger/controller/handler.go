@@ -186,3 +186,23 @@ func AboutMeHandler(c *gin.Context) {
 	}
 	c.Redirect(http.StatusMovedPermanently, "/")
 }
+
+func CommentSubmitHandler(c *gin.Context) {
+	comment := c.PostForm("comment")
+	author := c.PostForm("author")
+	email := c.PostForm("email")
+	articleIdStr := c.PostForm("article_id")
+	articleId, err := strconv.ParseInt(articleIdStr, 10, 64)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	err = service.InsertComment(comment, author, email, articleId)
+	if err != nil {
+		fmt.Println("insert comment failed, err:", err)
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	url := fmt.Sprintf("/article/detail/?article_id=%d", articleId)
+	c.Redirect(http.StatusMovedPermanently, url)
+}

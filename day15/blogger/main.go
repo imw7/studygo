@@ -27,5 +27,6 @@ func main() {
 	router.POST("/upload/file/", controller.UploadFileHandler)
 	router.GET("/leave/new/", controller.NewLeaveHandler)
 	router.GET("/about/me/", controller.AboutMeHandler)
+	router.POST("/comment/submit/", controller.CommentSubmitHandler)
 	_ = router.Run(":8080")
 }
