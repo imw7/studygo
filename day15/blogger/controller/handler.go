@@ -156,3 +156,14 @@ func UploadFileHandler(c *gin.Context) {
 		"usl":      url,
 	})
 }
+
+// NewLeaveHandler 新留言
+func NewLeaveHandler(c *gin.Context) {
+	leaveList, err := service.GetLeaveList()
+	if err != nil {
+		fmt.Println("get leave failed, err:", err)
+		c.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	c.HTML(http.StatusOK, "views/gbook.html", leaveList)
+}
