@@ -30,14 +30,14 @@ func main() {
 			return
 		}
 		// 返回数据
-		c.HTML(http.StatusOK, "book_list.html", gin.H{
+		c.HTML(http.StatusOK, "book_list.tmpl", gin.H{
 			"code": 0,
 			"data": books,
 		})
 	})
 	// 添加图书
 	r.GET("/book/new", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "new_book.html", nil)
+		c.HTML(http.StatusOK, "new_book.tmpl", nil)
 	})
 	r.POST("/book/new", func(c *gin.Context) {
 		title := c.PostForm("title")
