@@ -1,0 +1,9 @@
+<h1 style='color: orange'>Hello, Golang!</h1>
+<h2>How are you?</h2>
+<img id='i1' src='http://qqpublic.qpic.cn/qq_public/0/0-2851152509-60C9CF8ED448A91749CA40EC3619EC8A/0?fmt=jpg&size=56&h=585&w=640&ppv=1/0'></img>
+<button id='b1'>点我</button>
+<script>
+document.getElementById('b1').onclick=function() {
+    document.getElementById('i1').src='http://qqpublic.qpic.cn/qq_public/0/0-3801801491-B070394A8209A9400A40AE5DD5EDE8F2/0?fmt=jpg&size=146&h=898&w=900&ppv=1/0'
+}
+</script>
