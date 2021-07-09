@@ -2,9 +2,14 @@ package controller
 
 import (
 	"blogger/service"
+	"blogger/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	uuid "github.com/satori/go.uuid"
+	"log"
 	"net/http"
+	"path"
+	"path/filepath"
 	"strconv"
 )
 
@@ -126,4 +131,28 @@ func ArticleDetailHandler(c *gin.Context) {
 	m["article_id"] = articleId
 	m["comment_list"] = commentList
 	c.HTML(http.StatusOK, "views/detail.html", m)
+}
+
+// UploadFileHandler 上传文件
+func UploadFileHandler(c *gin.Context) {
+	// 单个文件
+	file, err := c.FormFile("upload")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	log.Println(file.Filename)
+	rootPath := utils.GetRootDir()
+	id := uuid.NewV4()
+	ext := path.Ext(file.Filename)
+	url := fmt.Sprintf("/static/upload/%s%s", id, ext)
+	dst := filepath.Join(rootPath, url)
+	// 上传文件到指定路径
+	_ = c.SaveUploadedFile(file, dst)
+	c.JSON(http.StatusOK, gin.H{
+		"uploaded": true,
+		"usl":      url,
+	})
 }
