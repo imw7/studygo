@@ -29,8 +29,22 @@ func f1(w http.ResponseWriter, _ *http.Request) {
 	_ = t.Execute(w, name)
 }
 
+func demo1(w http.ResponseWriter, r *http.Request) {
+	// 定义模板
+	// 解析模板
+	t, err := template.ParseFiles("./t.tmpl", "./ul.tmpl")
+	if err != nil {
+		fmt.Println("parse template failed, err:", err)
+		return
+	}
+	name := "路飞"
+	// 渲染模板
+	_ = t.Execute(w, name)
+}
+
 func main() {
 	http.HandleFunc("/", f1)
+	http.HandleFunc("/tmplDemo", demo1)
 	if err := http.ListenAndServe(":9090", nil); err != nil {
 		fmt.Println("HTTP server start failed, err:", err)
 		return
