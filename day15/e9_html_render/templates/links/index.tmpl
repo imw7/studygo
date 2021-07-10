@@ -1,0 +1,13 @@
+{{define "links/index.tmpl"}}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="stylesheet" href="/xxx/index.css">
+    <title>静态文件处理</title>
+</head>
+<body>
+<div>{{ .link | safe }}</div>
+</body>
+<script src="/xxx/index.js"></script>
+</html>
+{{end}}
