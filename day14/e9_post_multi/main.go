@@ -9,6 +9,10 @@ import (
 
 func main() {
 	r := gin.Default()
+	r.LoadHTMLFiles("./index.html")
+	r.GET("/index", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", nil)
+	})
 	// 处理multipart forms提交文件时默认的内存限制是32 MiB
 	// 可以通过下面的方式修改
 	// router.MaxMultipartMemory = 8 << 20  // 8 MiB
@@ -19,7 +23,7 @@ func main() {
 
 		for index, file := range files {
 			log.Println(file.Filename)
-			dst := fmt.Sprintf("/tmp/%s_%d", file.Filename, index)
+			dst := fmt.Sprintf("./%d_%s", index, file.Filename)
 			// 上传文件到指定的目录
 			_ = c.SaveUploadedFile(file, dst)
 		}
