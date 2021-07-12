@@ -3,11 +3,11 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-// GORM CRUD
+// GORM 创建
 
 // User
 // 1. 定义模型
@@ -19,13 +19,13 @@ type User struct {
 
 func main() {
 	// 连接MySQL数据库
-	db, err := gorm.Open("mysql", "root:password@tcp(127.0.0.1:3306)/db1?charset=utf8&mb4&parseTime=True&loc=Local")
+	dsn := "root:password@tcp(127.0.0.1:3306)/test?charset=utf8&mb4&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
-	defer func() { _ = db.Close() }()
 	// 2. 把模型与数据库中的表对应起来
-	db.AutoMigrate(&User{})
+	_ = db.AutoMigrate(&User{})
 
 	// 3. 创建
 
@@ -53,11 +53,19 @@ func main() {
 		Age:  sql.NullInt64{Int64: 0, Valid: false},    // 默认年龄
 	}
 
-	fmt.Println(db.NewRecord(&u)) // 判断主键是否为空 true
-	db.Debug().Create(&u)         // 在数据库中创建了一条`张三 18`的记录
-	fmt.Println(db.NewRecord(&u)) // 判断主键是否为空 false
+	// 批量插入
+	users := []User{u, u1, u2, u3}
+	db.Create(&users)
+	for _, user := range users {
+		fmt.Println(user.ID)
+	}
 
-	db.Debug().Create(&u1) // 在数据库中创建了一条`john 22`的记录
-	db.Debug().Create(&u2) // 在数据库中创建了一条`"" 22`的记录
-	db.Debug().Create(&u3) // 在数据库中创建了一条`john 18`的记录
+	// 根据Map创建
+	db.Model(&User{}).Create(map[string]interface{}{
+		"Name": "jessie", "Age": 21,
+	})
+	db.Model(&User{}).Create([]map[string]interface{}{
+		{"Name": "eric", "Age": 19},
+		{"Name": "sarah", "Age": 32},
+	})
 }
