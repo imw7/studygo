@@ -27,4 +27,8 @@ func main() {
 	for _, v := range s3 {
 		fmt.Println(v)
 	}
+	// 利用for-range加上key获得value
+	for i := range s3 {
+		fmt.Println(s3[i])
+	}
 }
