@@ -33,4 +33,25 @@ func main() {
 	fmt.Println(x1) // [1 5 5]
 	s1[0] = 100     // 修改了底层数组
 	fmt.Println(x1) // [100 5 5]
+
+	// 可以用copy和append组合可以避免创建中间的临时切片
+	a := []int{1, 2, 3}
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	a = append(a, 0) // 切片扩展1个空间
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	copy(a[1+1:], a[1:]) // a[1:]向后移动1个位置
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	a[1] = 8 // 设置新添加的元素
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+
+	// 用copy和append组合实现在中间位置插入多个元素(也就是插入一个切片)
+	a = []int{1, 2, 3}
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	x := []int{9, 10, 11}
+	a = append(a, x...) // 为x切片扩展足够的空间
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	copy(a[1+len(x):], a[1:]) // a[i:]向后移动len(x)个位置
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	copy(a[1:], x) // 复制新添加的切片
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
 }
