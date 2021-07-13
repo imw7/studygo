@@ -57,6 +57,10 @@ func f7(x string, y ...int) {
 	fmt.Println(y) // y的类型是切片 []int
 }
 
+func Print(a ...interface{}) {
+	fmt.Println(a...)
+}
+
 // Go语言中函数没有默认参数这个概念
 
 func main() {
@@ -78,4 +82,8 @@ func main() {
 
 	f7("hello", 1, 3, 5, 7, 9)
 	f7("eric")
+
+	var x = []interface{}{123, "abc"}
+	Print(x...) // 123 abc
+	Print(x)    // [123 abc]
 }
