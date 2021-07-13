@@ -43,4 +43,23 @@ func main() {
 	a1[6] = 1300 // 修改了底层数组的值
 	fmt.Println("s6:", s6)
 	fmt.Println("s8:", s8)
+
+	var a []int // nil切片，和 nil 相等，一般用来表示一个不存在的切片
+	fmt.Printf("a:%#v is(a==nil):%v\n", a, a == nil)
+	b := []int{} // 空切片, 和 nil 不相等, 一般用来表示一个空的集合
+	fmt.Printf("b:%#v is(b==nil):%v\n", b, b == nil)
+	c := []int{1, 2, 3} // 有3个元素的切片, len和cap都为3
+	fmt.Printf("c:%#v len(c):%d cap(c):%d\n", c, len(c), cap(c))
+	d := c[:2] // 有2个元素的切片，len为2，cap为3
+	fmt.Printf("d:%#v len(d):%d cap(d):%d\n", d, len(d), cap(d))
+	e := c[0:2:cap(c)] // 有2个元素的切片，len为2，cap为3
+	fmt.Printf("e:%#v len(e):%d cap(e):%d\n", e, len(e), cap(e))
+	f := c[:0] // 有0个元素的切片, len为0, cap为3
+	fmt.Printf("f:%#v len(f):%d cap(f):%d\n", f, len(f), cap(f))
+	g := make([]int, 3) // 有3个元素的切片, len和cap都为3
+	fmt.Printf("g:%#v len(g):%d cap(g):%d\n", g, len(g), cap(g))
+	h := make([]int, 2, 3) // 有2个元素的切片, len为2, cap为3
+	fmt.Printf("h:%#v len(h):%d cap(h):%d\n", h, len(h), cap(h))
+	i := make([]int, 0, 3) // 有0个元素的切片, len为0, cap为3
+	fmt.Printf("i:%#v len(i):%d cap(i):%d\n", i, len(i), cap(i))
 }
