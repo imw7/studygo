@@ -30,4 +30,14 @@ func main() {
 	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
 	a = append([]int{-3, -2, -1}, a...) // 在开头添加1个切片
 	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+
+	// 使用多个append操作组合起来，实现在切片中间插入元素
+	// 每个添加操作中的第二个append调用都会创建一个临时切片，
+	// 并将a[i:]的内容复制到新创建的切片中，然后将临时创建的切片再追加到a[:i]。
+	a = []int{1, 2, 3}
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	a = append(a[:1], append([]int{4}, a[1:]...)...) // 在索引为1的位置插入4
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
+	a = append(a[:3], append([]int{5, 6, 7}, a[3:]...)...) // 在索引为3的位置插入切片
+	fmt.Printf("a=%v len(a)=%d cap(a)=%d\n", a, len(a), cap(a))
 }
