@@ -1,3 +1,4 @@
-module github.com/imw7/studygo/day5/e10_calc
+// 需要被导入的包的module名字可以不和路径一样
+module imw7.com/studygo/calc
 
 go 1.16
