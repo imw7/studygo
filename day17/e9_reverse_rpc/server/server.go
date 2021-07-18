@@ -41,7 +41,7 @@ func main() {
 
 		rpc.ServeConn(conn)
 		if err = conn.Close(); err != nil {
-			log.Fatal(err)
+			return
 		}
 	}
 }

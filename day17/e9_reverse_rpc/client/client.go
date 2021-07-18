@@ -10,9 +10,9 @@ import (
 // doClientWork 执行RPC调用的操作
 func doClientWork(clientChan <-chan *rpc.Client) {
 	client := <-clientChan // 从管道中去取一个RPC客户端对象
-	defer func() { // 通过defer语句指定在函数退出前关闭客户端
+	defer func() {         // 通过defer语句指定在函数退出前关闭客户端
 		if err := client.Close(); err != nil {
-			log.Fatal("client.Close() error:", err)
+			return
 		}
 	}()
 
