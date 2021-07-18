@@ -1,0 +1,20 @@
+syntax = "proto3"; // 采用proto3语法
+
+option go_package = "./;pb";
+package pb; // package指令指明当前是pb包
+
+// message关键字定义一个新的HelloRequest类型，
+// 在最终生成的Go语言代码中对应一个HelloRequest结构体。
+message HelloRequest {
+  // HelloRequest类型中只有一个字符串类型的value成员，
+  // 该成员编码时用1编号代替名字
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+service HelloService {
+  rpc Hello(HelloRequest) returns (HelloReply);
+}
