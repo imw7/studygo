@@ -1,0 +1,14 @@
+syntax = "proto3"; // 语法
+
+package pb; // 包名
+option go_package = "../pb"; // 生成的文件放在哪个位置
+
+message String {
+  string value = 1;
+}
+
+// 发布订阅服务接口
+service PubsubService {
+  rpc Publish (String) returns (String); // 普通的RPC方法
+  rpc Subscribe (String) returns (stream String); // 单向的流服务
+}
