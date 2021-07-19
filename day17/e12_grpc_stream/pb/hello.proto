@@ -1,0 +1,20 @@
+syntax = "proto3"; // 采用proto3语法
+
+option go_package = "../pb"; // 声明生成的 go 文件所属的包
+package pb; // 声明所在包
+
+// message关键字定义一个新的String类型，
+// 在最终生成的Go语言代码中对应一个String结构体。
+message String {
+  // String类型中只有一个字符串类型的value成员，
+  // 该成员编码时用1编号代替名字
+  string value = 1;
+}
+
+service HelloService {
+  rpc Hello (String) returns (String);
+
+  // 增加一个支持双向流的Channel方法
+  // 关键字stream指定启用流特性，参数部分是接收客户端参数的流，返回值是返回给客户端的流。
+  rpc Channel (stream String) returns (stream String);
+}
