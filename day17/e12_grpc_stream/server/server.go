@@ -42,13 +42,16 @@ func (p *HelloServiceImpl) Channel(stream pb.HelloService_ChannelServer) error {
 }
 
 func main() {
+	// 构造一个gRPC服务对象
 	grpcServer := grpc.NewServer()
+	// 通过gRPC插件生成的RegisterHelloServiceServer函数注册自己实现的HelloServiceImpl服务
 	pb.RegisterHelloServiceServer(grpcServer, new(HelloServiceImpl))
 
 	listener, err := net.Listen("tcp", ":1234")
 	if err != nil {
 		log.Fatal("ListenTCP error:", err)
 	}
+	// 在一个监听端口上提供gRPC服务
 	if err = grpcServer.Serve(listener); err != nil {
 		log.Fatal(err)
 	}
