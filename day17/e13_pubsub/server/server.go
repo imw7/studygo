@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/moby/moby/pkg/pubsub"
+	"github.com/moby/moby/pkg/pubsub" // docker项目实现发布订阅模式的包
 	"google.golang.org/grpc"
 	"imw7.com/pubsub/pb"
 	"log"
