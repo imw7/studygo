@@ -37,6 +37,9 @@ func main() {
 	// 服务器在收到每个gRPC方法调用之前，会首先输出一行日志，然后再调用对方的方法
 	// 2020/07/20 23:33:54 filter: &{0xc12cd8 /pb.HelloService/Hello}
 	// 注意：gRPC框架中只能为每个服务设置一个截取器，因此所有的截取工作只能在一个函数中完成
+
+	// 普通方法 grpc.UnaryInterceptor
+	// 流方法 grpc.StreamInterceptor
 	server := grpc.NewServer(grpc.UnaryInterceptor(filter))
 	pb.RegisterHelloServiceServer(server, new(HelloService))
 
