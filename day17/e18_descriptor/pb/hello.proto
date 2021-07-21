@@ -1,0 +1,36 @@
+// 验证器
+//
+// protoc  \
+//    --proto_path=${GOPATH}/src \
+//    --proto_path=${GOPATH}/src/github.com/google/protobuf/src \
+//    --proto_path=. \
+//    --govalidators_out=. --go_out=plugins=grpc:.\
+//    hello.proto
+syntax = "proto3";
+
+package main;
+option go_package = "../pb";
+
+//import "google/protobuf/descriptor.proto";
+
+// 能够实现功能较为强大的验证器功能
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+//extend google.protobuf.FileOptions {
+//  string default_string = 50000;
+//  int32 default_int = 50001;
+//}
+//
+//message Msg {
+//  string name = 1 [(default_string) = "gopher"];
+//  int32 age = 2 [(default_int) = 10];
+//}
+
+message Message {
+  string important_string = 1 [
+    (validator.field) = {regex: "^[a-z]{2,5}$"}
+  ];
+  int32 age = 2 [
+    (validator.field) = {int_gt: 0, int_lt: 100}
+  ];
+}
