@@ -18,7 +18,7 @@ import (
 
 type HelloService struct{}
 
-func (p *HelloService) Hello(ctx context.Context, req *pb.String) (*pb.String, error) {
+func (p *HelloService) Hello(_ context.Context, req *pb.String) (*pb.String, error) {
 	reply := &pb.String{Value: "Hello, " + req.GetValue() + "!"}
 	return reply, nil
 }
