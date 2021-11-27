@@ -129,4 +129,5 @@ func main() {
 	InitOptions1("str1", "str2", "str3", 1, 2, 3)
 	InitOptions2("str1", "str2", "str3", 1, 2, 3)
 	InitOptions3(WithStrOptions1("str1"), WithStrOptions2("str2"), WithIntOptions1(100))
+	InitOptions3(WithStrOptions3("hello"), WithIntOptions2(1), WithIntOptions3(2))
 }
