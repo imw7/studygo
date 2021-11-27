@@ -1,4 +1,4 @@
-package main
+package registry
 
 // 抽象出一些结构体
 // Node：单个节点的结构体，包含 id ip port weight(权重)
