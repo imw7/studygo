@@ -16,7 +16,13 @@ func (g *Greeter) Hello(_ context.Context, req *pb.Request, rsp *pb.Response) er
 
 func main() {
 	// Create service
-	service := micro.NewService(micro.Name("go.micro.srv.HelloWorld"))
+	service := micro.NewService(
+		micro.Name("go.micro.api.hello"),
+		micro.Version("latest"),
+	)
+
+	// init service
+	service.Init()
 
 	// Register handler
 	if err := pb.RegisterGreeterHandler(service.Server(), new(Greeter)); err != nil {

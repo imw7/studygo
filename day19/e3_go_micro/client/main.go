@@ -16,7 +16,7 @@ func main() {
 	service.Init()
 
 	// Use the generated client stub
-	client := pb.NewGreeterService("go.micro.srv.HelloWorld", service.Client())
+	client := pb.NewGreeterService("go.micro.api.hello", service.Client())
 
 	// Make request
 	rsp, err := client.Hello(context.Background(), &pb.Request{Name: "John"})
