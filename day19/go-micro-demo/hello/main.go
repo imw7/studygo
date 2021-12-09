@@ -12,13 +12,13 @@ micro new service hello
 cd hello
 make proto tidy
 micro run
-micro call go.micro.api.Hello HelloService.Call '{"name": "John"}'
+micro call hello HelloService.Call '{"name": "John"}'
 */
 
 func main() {
 	// create a new service
 	service := micro.NewService(
-		micro.Name("go.micro.api.Hello"), // server name
+		micro.Name("hello"), // server name
 		micro.Version("latest"),
 	)
 

@@ -16,7 +16,7 @@ func main() {
 	service.Init()
 
 	// user the generated client stub
-	cl := pb.NewHelloService("go.micro.api.Hello", service.Client())
+	cl := pb.NewHelloService("hello", service.Client())
 
 	// make request
 	rsp, err := cl.Call(context.Background(), &pb.Request{Name: "John"})
