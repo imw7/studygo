@@ -6,6 +6,7 @@ require (
 	github.com/asim/go-micro/plugins/server/http/v4 v4.0.0-20211207093048-a40f6e8fae19
 	github.com/gin-gonic/gin v1.7.7
 	github.com/golang/protobuf v1.5.2
+	github.com/pborman/uuid v1.2.1
 	go-micro.dev/v4 v4.4.0
 	google.golang.org/protobuf v1.27.1
 )
