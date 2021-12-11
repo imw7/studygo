@@ -6,8 +6,8 @@ import (
 	"go-micro-demo/registerConf/handler"
 	"go-micro-demo/registerConf/pb"
 	"go-micro.dev/v4"
+	"go-micro.dev/v4/logger"
 	"go-micro.dev/v4/registry"
-	"go-micro.dev/v4/util/log"
 )
 
 func main() {
@@ -19,15 +19,15 @@ func main() {
 	// 配置中心
 	consulConfig, err := config.GetConsulConfig("127.0.0.1", 8500, "/micro/config")
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
 
 	// MySQL配置信息
 	info, err := config.GetMySQLFromConsul(consulConfig, "mysql")
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
-	log.Info("MySQL配置信息:", info)
+	logger.Info("MySQL配置信息:", info)
 
 	// 创建service
 	srv := micro.NewService(
@@ -39,11 +39,11 @@ func main() {
 
 	// 注册handler
 	if err := pb.RegisterRegisterConfHandler(srv.Server(), &handler.RegisterConf{}); err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
 
 	// 运行service
 	if err := srv.Run(); err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
 }
