@@ -28,7 +28,7 @@ func main() {
 		logger.Fatal(err)
 	}
 	// 必须使用logger才行，否则无法显示info信息
-	logger.Info("MySQL配置信息:", info)
+	logger.Info("MySQL配置信息:", *info)
 
 	// 创建service
 	srv := micro.NewService(
