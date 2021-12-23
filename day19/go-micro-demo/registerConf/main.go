@@ -39,12 +39,12 @@ func main() {
 	)
 
 	// 注册handler
-	if err := pb.RegisterRegisterConfHandler(srv.Server(), &handler.RegisterConf{}); err != nil {
+	if err = pb.RegisterRegisterConfHandler(srv.Server(), &handler.RegisterConf{}); err != nil {
 		logger.Fatal(err)
 	}
 
 	// 运行service
-	if err := srv.Run(); err != nil {
+	if err = srv.Run(); err != nil {
 		logger.Fatal(err)
 	}
 }
