@@ -21,6 +21,11 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// 服务注销
+	// if err := registerClient.Agent().ServiceDeregister("1"); err != nil {
+	// 	log.Fatal(err)
+	// }
+
 	// 服务发现，从consul上获取健康的服务
 	// params:
 	// 	@service: 服务名。注册服务时指定该string
