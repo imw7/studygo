@@ -16,6 +16,7 @@ func NewDemo() *demo {
 
 func (d *demo) InitRouter(router *gin.Engine) {
 	router.POST("/demo", d.demo)
+	router.GET("/demo", d.demo)
 }
 
 func (d *demo) demo(c *gin.Context) {
