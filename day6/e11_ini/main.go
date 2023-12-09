@@ -3,7 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"reflect"
 	"strconv"
 	"strings"
@@ -49,7 +49,8 @@ func loadIni(fileName string, data interface{}) (err error) {
 		return
 	}
 	// 1.读文件得到字节类型数据
-	b, err := ioutil.ReadFile(fileName)
+	// b, err := ioutil.ReadFile(fileName)
+	b, err := os.ReadFile(fileName)
 	if err != nil {
 		return
 	}

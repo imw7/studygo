@@ -68,6 +68,7 @@ func getLogString(lv LogLevel) string {
 		return "FATAL"
 	case ERROR:
 		return "ERROR"
+	default:
 	}
 	return "DEBUG"
 }

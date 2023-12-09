@@ -26,7 +26,7 @@ func main() {
 	//  "port": 3306
 	// }
 	// 具体操作可以在我的博客中找到：
-	// https://imw7.github.io/post/Go/go_micro/#%E6%B3%A8%E5%86%8C%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83
+	// https://blog.imw7.com/post/Go/go_micro/
 	// 5.配置中心
 	consulConfig, err := config.GetConsulConfig("127.0.0.1", 8500, "/micro/config")
 	if err != nil {

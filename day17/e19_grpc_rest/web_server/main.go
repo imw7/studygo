@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"imw7.com/grpc_rest/pb"
 	"log"
 	"net/http"
@@ -20,7 +21,10 @@ func main() {
 	mux := runtime.NewServeMux() // 创建路由处理器
 
 	// 将RestService服务相关的REST接口中转到后面的gRPC服务
-	err := pb.RegisterRestServiceHandlerFromEndpoint(ctx, mux, "localhost:5000", []grpc.DialOption{grpc.WithInsecure()})
+	err := pb.RegisterRestServiceHandlerFromEndpoint(
+		ctx, mux, "localhost:5000",
+		[]grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())},
+	)
 	if err != nil {
 		log.Fatal(err)
 	}

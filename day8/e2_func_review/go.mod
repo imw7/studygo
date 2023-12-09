@@ -1,3 +1,3 @@
 module func_review
 
-go 1.16
+go 1.21

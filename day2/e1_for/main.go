@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 // 流程控制之跳出for循环
@@ -29,5 +30,7 @@ func main() {
 	var name string
 	fmt.Println("What's your name? ")
 	_, _ = fmt.Scanln(&name)
-	fmt.Printf("Welcome, %s!\n", strings.Title(name))
+	fmt.Printf("Welcome, %s!\n",
+		cases.Title(language.English).String(name),
+	)
 }

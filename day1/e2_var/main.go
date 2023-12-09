@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 // Go语言中推荐使用驼峰式命名
@@ -17,7 +18,8 @@ var (
 func main() {
 	studentName = "eric"
 	age = 19
-	fmt.Printf("%s is %d years old.\n", strings.Title(studentName), age)
+	fmt.Printf("%s is %d years old.\n",
+		cases.Title(language.English).String(studentName), age)
 
 	name = "sarah"
 	age = 10
@@ -30,7 +32,8 @@ func main() {
 	default:
 		strG = "boy"
 	}
-	fmt.Printf("%s is a %d years old %s.\n", strings.Title(name), age, strG)
+	fmt.Printf("%s is a %d years old %s.\n",
+		cases.Title(language.English).String(name), age, strG)
 
 	s1 := "你好，世界！"
 	fmt.Println(s1)

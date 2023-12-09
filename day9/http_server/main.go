@@ -2,14 +2,16 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
+	"os"
 )
 
 // net/http server
 
 func f1(w http.ResponseWriter, _ *http.Request) {
-	b, err := ioutil.ReadFile("./xx.html")
+	// b, err := ioutil.ReadFile("./xx.html")
+	b, err := os.ReadFile("./xx.html")
 	if err != nil {
 		_, _ = w.Write([]byte(fmt.Sprintf("%v\n", err)))
 	}
@@ -23,7 +25,8 @@ func f2(w http.ResponseWriter, r *http.Request) {
 	age := queryParam.Get("age")
 	fmt.Println(name, age)
 	fmt.Println(r.Method)
-	fmt.Println(ioutil.ReadAll(r.Body)) // 在服务端打印客户端发来的请求的body
+	// fmt.Println(ioutil.ReadAll(r.Body)) // 在服务端打印客户端发来的请求的body
+	fmt.Println(io.ReadAll(r.Body))
 	_, _ = w.Write([]byte("ok"))
 }
 

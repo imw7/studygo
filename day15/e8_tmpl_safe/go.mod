@@ -1,3 +1,3 @@
 module tmpl_safe
 
-go 1.16
+go 1.21

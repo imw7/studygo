@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -58,7 +58,8 @@ func main() {
 	defer func() { _ = resp.Body.Close() }() // 一定要记得关闭resp.Body
 	// 发请求
 	// 从resp中把服务端返回的数据读出来
-	b, err := ioutil.ReadAll(resp.Body) // 在客户端读出服务端返回的响应的body
+	//b, err := ioutil.ReadAll(resp.Body) // 在客户端读出服务端返回的响应的body
+	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("get req failed, err:", err)
 		return

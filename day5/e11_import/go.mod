@@ -1,6 +1,6 @@
 module import_demo
 
-go 1.16
+go 1.21
 
 // require 格式必须是这样的，路径和需要导入的包的go.mod里面的一样
 require "imw7.com/studygo/calc" v0.0.0

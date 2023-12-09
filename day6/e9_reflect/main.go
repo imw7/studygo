@@ -27,6 +27,7 @@ func reflectValue(x interface{}) {
 	case reflect.Float64:
 		// v.Float()从反射中获取浮点型的原始值，然后通过float64()强制类型转换
 		fmt.Printf("type is float64, value is %f\n", float64(v.Float()))
+	default:
 	}
 }
 

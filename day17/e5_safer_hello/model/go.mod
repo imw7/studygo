@@ -1,3 +1,3 @@
 module imw7.com/safer_hello/model
 
-go 1.16
+go 1.21

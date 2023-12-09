@@ -1,3 +1,3 @@
 module defer_func
 
-go 1.16
+go 1.21

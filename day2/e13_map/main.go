@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano()) // 初始化随机数种子
+	rand.New(rand.NewSource(time.Now().UnixNano())) // 初始化随机数种子
 
 	var scoreMap = make(map[string]int, 200)
 

@@ -26,6 +26,7 @@ func writeFile(name string) {
 		}
 		msg = strings.Trim(msg, "\r\n")
 		if strings.ToUpper(msg) == "EXIT" {
+			fmt.Println("write done!")
 			break
 		}
 		// write
@@ -53,6 +54,7 @@ func writeWithBufio(name string) {
 		}
 		msg = strings.Trim(msg, "\r\n")
 		if strings.ToUpper(msg) == "EXIT" {
+			fmt.Println("write done!")
 			break
 		}
 		_, _ = writer.WriteString(msg + "\n") // 写到缓存中
@@ -70,9 +72,31 @@ func writeWithIoutil(name string) {
 		}
 		data = strings.Trim(data, "\r\n")
 		if strings.ToUpper(data) == "EXIT" {
+			fmt.Println("write done!")
 			break
 		}
 		err = ioutil.WriteFile(name, []byte(data), 0777)
+		if err != nil {
+			fmt.Println("write file failed, err:", err)
+			return
+		}
+	}
+}
+
+func writeWithWriteFile(name string) {
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		data, err := reader.ReadString('\n')
+		if err != nil {
+			fmt.Println("read input failed, err:", err)
+			continue
+		}
+		data = strings.Trim(data, "\r\n")
+		if strings.ToUpper(data) == "EXIT" {
+			fmt.Println("write done!")
+			break
+		}
+		err = os.WriteFile(name, []byte(data), 0777)
 		if err != nil {
 			fmt.Println("write file failed, err:", err)
 			return
@@ -84,4 +108,5 @@ func main() {
 	writeFile("xx1.txt")
 	writeWithBufio("xx2.txt")
 	writeWithIoutil("xx3.txt")
+	writeWithWriteFile("xx4.txt")
 }

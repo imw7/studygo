@@ -14,7 +14,7 @@ type Counter interface {
 	Load() int64
 }
 
-// 普通版
+// CommonCounter 普通版
 type CommonCounter struct {
 	counter int64
 }
@@ -27,7 +27,7 @@ func (c *CommonCounter) Load() int64 {
 	return c.counter
 }
 
-// 互斥锁版
+// MutexCounter 互斥锁版
 type MutexCounter struct {
 	counter int64
 	lock    sync.Mutex
@@ -45,7 +45,7 @@ func (m *MutexCounter) Load() int64 {
 	return m.counter
 }
 
-// 原子操作版
+// AtomicCounter 原子操作版
 type AtomicCounter struct {
 	counter int64
 }

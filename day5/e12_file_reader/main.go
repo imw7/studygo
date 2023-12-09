@@ -61,9 +61,19 @@ func readByBufio(name string) {
 	}
 }
 
-// 利用ioutil直接读取整个文件
+// 利用ioutil直接读取整个文件，go1.16后已经过期
 func readByIoutil(name string) {
 	file, err := ioutil.ReadFile(name)
+	if err != nil {
+		fmt.Println("read file failed, err:", err)
+		return
+	}
+	fmt.Println(string(file))
+}
+
+// 因为ioutil在go1.16后过期，官方推荐利用os.ReadFile代替
+func readByReadFile(name string) {
+	file, err := os.ReadFile(name)
 	if err != nil {
 		fmt.Println("read file failed, err:", err)
 		return
@@ -75,4 +85,5 @@ func main() {
 	readFile("./main.go")
 	readByBufio("./main.go")
 	readByIoutil("./main.go")
+	readByReadFile("./main.go")
 }

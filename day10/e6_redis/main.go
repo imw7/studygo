@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/go-redis/redis/v8" // 注意导入的是新版本
 	"time"
@@ -40,7 +41,7 @@ func V8Example() {
 	fmt.Println("key", val)
 
 	val2, err := rdb.Get(ctx, "key2").Result()
-	if err == redis.Nil {
+	if errors.Is(err, redis.Nil) {
 		fmt.Println("key2 does not exist")
 	} else if err != nil {
 		panic(err)

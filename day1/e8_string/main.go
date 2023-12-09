@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 	"strings"
 )
 
@@ -63,5 +65,5 @@ func main() {
 	fmt.Println(strings.Join(ret, "+")) // E:+Go+src+github.com+imw7+day01
 
 	s5 := "eric"
-	fmt.Println(strings.Title(s5)) // Eric
+	fmt.Println(cases.Title(language.English).String(s5)) // Eric
 }

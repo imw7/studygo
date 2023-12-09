@@ -1,3 +1,3 @@
 module const_demo
 
-go 1.16
+go 1.21

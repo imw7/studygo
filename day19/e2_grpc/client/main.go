@@ -4,13 +4,16 @@ import (
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"grpc-user/pb"
 	"log"
 )
 
 func main() {
 	// 连接服务端
-	conn, err := grpc.Dial(":1234", grpc.WithInsecure())
+	conn, err := grpc.Dial(":1234",
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
